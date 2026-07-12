@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // Public routes
-app.use('/api/auth', (await import('./routes/authRoute.js')).default);
+app.use('/api/auth', authRoute);
 // Private routes
 
 connectDB().then(() => {
