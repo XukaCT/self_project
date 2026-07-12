@@ -33,6 +33,7 @@ export  const signUp = async (req, res) => {
         // Respond
         return res.sendStatus(204);
     } catch (error) {
+        console.error("Error during sign-up:", error);
        return res.status(500).json({ message: "Error when creating user", error });
     }
 };
@@ -87,4 +88,25 @@ export const signIn = async (req, res) => {
         console.error("Error during sign-in:", error);
         return res.status(500).json({ message: "Error when signing in", error });
     }
+};
+
+export const signOut = async (req, res) => {
+    try{
+        // Get refresh token from cookies
+        const token = req.cookies?.refreshToken;
+        
+        if(token){
+            // delete refresh token from session in database
+            await Session.deleteOne({ refreshToken: token });
+        
+            // delete cookies
+            res.clearCookie("refreshToken");
+        }
+        return res.status(200).json({ message: "Sign-out successful" });
+        }
+    catch (error) {
+        console.error("Error during sign-out:", error);
+        return res.status(500).json({ message: "Error when signing out", error });
+    }
+    
 };
