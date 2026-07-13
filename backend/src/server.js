@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import {connectDB} from './libs/db.js';
 import authRoute from './routes/authRoute.js';
 import cookieParser from 'cookie-parser';
+import userRoute from './routes/userRouter.js';
+import { protectedRoute } from './middlewares/authMiddleware.js';
 
 dotenv.config();
 
@@ -15,7 +17,10 @@ app.use(cookieParser());
 
 // Public routes
 app.use('/api/auth', authRoute);
+
 // Private routes
+app.use(protectedRoute);
+app.use('/api/user', userRoute);
 
 connectDB().then(() => {
 app.listen(PORT, () => {
