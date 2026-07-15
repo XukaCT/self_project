@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import SignInPage from "./pages/SigninPages";
+import SignInPage from "./pages/SignInPages";
 import ChatAppPage from "./pages/ChatAppPage";
 import SignUpPage from "./pages/SignUpPage";
 import { Toaster } from "sonner";
