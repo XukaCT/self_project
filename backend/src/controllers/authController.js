@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import Session from "../models/Session.js";
 
-const Access_Token_TTL = "10s"; 
+const Access_Token_TTL = "10m"; 
 const Refresh_Token_TTL = 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
 
 export  const signUp = async (req, res) => {
@@ -138,7 +138,7 @@ export const refreshToken = async (req, res) => {
         userId: session.userId,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: ACCESS_TOKEN_TTL }
+      { expiresIn: Access_Token_TTL }
     );
 
     // return
