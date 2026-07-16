@@ -24,7 +24,7 @@ app.use('/api/auth', authRoute);
 
 // Private routes
 app.use(protectedRoute);
-app.use('/api/user', userRoute);
+app.use('/api/users', userRoute);
 
 connectDB().then(() => {
 app.listen(PORT, () => {
