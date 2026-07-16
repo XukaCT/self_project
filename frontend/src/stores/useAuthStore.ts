@@ -23,4 +23,22 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({ loading: false });
     }
   },
+
+  signIn: async (username, password) => {
+    try {
+      set({ loading: true });
+
+      const { accessToken } = await authService.signIn(username, password);
+      set({ accessToken });
+
+
+
+      toast.success("Welcome back 🎉");
+    } catch (error) {
+      console.error(error);
+      toast.error("Login failed!");
+    } finally {
+      set({ loading: false });
+    }
+  },
 }));

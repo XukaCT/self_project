@@ -39,7 +39,7 @@ export function SignupForm({
     const { firstname, lastname, username, email, password } = data;
 
     // call for signup
-    await signUp(firstname, lastname, username, email, password);
+    await signUp(username, password, email, firstname, lastname);
 
     navigate("/signin");
   };
@@ -59,7 +59,7 @@ export function SignupForm({
                   className="mx-auto block w-fit text-center"
                 >
                   <img
-                    src="/logo3.svg"
+                    src="/logo.svg"
                     alt="logo"
                   />
                 </a>
